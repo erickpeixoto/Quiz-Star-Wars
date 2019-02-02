@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Input from './input'
 
 const styles = {
     card: {
@@ -24,7 +25,7 @@ const styles = {
 };
 
 function ImgMediaCard(props) {
-    const { classes, image } = props;
+    const { classes, image, _key } = props;
     return (
         <Card className={classes.card}>
             <CardActionArea>
@@ -38,21 +39,22 @@ function ImgMediaCard(props) {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Lizard
-          </Typography>
+                        <Button size="small" color="primary">
+                            Ver detalhes
+                        </Button>
+                  </Typography>
                     <Typography component="p">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                        across all continents except Antarctica
-          </Typography>
+                        Lembre-se, quando você verifica os detalhes, os acertos passam a valer <big>5 pontos</big>
+                   </Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
-                    <input type="text" name="" placeholder="Responda aqui..."/>
-        </Button>
-                <Button size="small" color="primary">
-                   Detalhes 
-        </Button>
+                  <Input
+                       _key={_key} 
+                  />
+                <Button size="small" color="primary" onClick={(input) => { console.info(input)}}>
+                   Responder! 
+                </Button>
             </CardActions>
         </Card>
     );

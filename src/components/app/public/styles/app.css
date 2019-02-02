@@ -1,0 +1,17 @@
+.centerAlign{
+    text-align: center
+}
+.border{
+    border: 1px solid red;
+}
+.react-countdown-clock {
+    float: right;
+    right: 64px;
+    position: relative;
+    top: 11px;
+}
+
+.container-list{
+    text-align: center;
+    margin-top: 20px;
+}

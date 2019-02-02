@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux'
 import { getPeopleApi } from './actions'
 import List from './list'
 import Helmet from 'react-helmet'
-
+import Grid from '@material-ui/core/Grid'
+import ReactCountdownClock from 'react-countdown-clock'
 
 
 class Quiz extends Component {
@@ -15,12 +16,31 @@ class Quiz extends Component {
     }
     render() {
         return (
-            <section>
-                 <div>
-                     <h2>Quiz</h2>
-                     <List/>
+            <Grid container spacing={24}>
+                <Grid container xs={12} className={'centerAlign border'}>
+                    <Grid item xs={4} className={'centerAlign border'}>
+                       <big>25</big> Pontos
+                    </Grid>
+                    <Grid item xs={4} className={'centerAlign border'}>
+                        <h2>Star Wars Quiz</h2>
+                    </Grid>
+                    <Grid item xs={4} className={'alignRight border'}>
+                        <ReactCountdownClock seconds={120}
+                            color={'gray'}
+                            alpha={0.9}
+                            size={100}
+                            pausedText={'||'}
+                            paused={false}
+                            onClick={() => console.info('cliked')}
+                            onComplete={() => console.warn('concluído')} />
+                    </Grid>
+                  </Grid>   
 
-                </div>   
+                <Grid container xs={12} className={'container-list'}>
+                     <List />
+                </Grid>
+
+
                 <Helmet
                     title="Jogando... Star Wars"
                         style={[{
@@ -41,7 +61,7 @@ class Quiz extends Component {
                             `
                         }]}
             />
-            </section>
+            </Grid>
         )
     }
 }

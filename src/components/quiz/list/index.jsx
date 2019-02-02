@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Grid from '@material-ui/core/Grid'
 import Card from './card'
-
+import Pagination from "react-js-pagination"
 
 
 export class ListPeople extends Component {
@@ -42,7 +43,7 @@ export class ListPeople extends Component {
 
 
   renderRows() {
-
+console.warn('Acessou')
     const { people } = this.props.quiz
     const list = this.listItems(people, this.state.activePage, this.state.itemsPerPage)
 
@@ -52,6 +53,7 @@ export class ListPeople extends Component {
       <span key={i}>
         <Card
           image={person.perfil}
+          _key={i}
         />
       </span>
 
@@ -60,11 +62,24 @@ export class ListPeople extends Component {
 
   }
   render() {
+
+    const { people } = this.props.quiz
+
     return (
-      <div>
-            <h3>lIST</h3>
-           { this.renderRows() }
-      </div>
+      <Grid container spacing={24}>
+          <Grid item xs={12} className={'centerAlign'}>
+              { this.renderRows() }
+          </Grid>
+           <Grid item xs={12}>
+                <Pagination
+                  activePage={this.state.activePage}
+                  itemsCountPerPage={this.state.itemsPerPage}
+                  totalItemsCount={(people) && people.length}
+                  pageRangeDisplayed={5}
+                  onChange={this.handlePageChange}
+                />
+          </Grid>
+      </Grid>
     )
   }
 }
