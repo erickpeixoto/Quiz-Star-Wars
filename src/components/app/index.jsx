@@ -13,6 +13,7 @@ import { injectGlobal } from 'styled-components'
 import mainFont from './public/fonts/Poiret_One/PoiretOne-Regular.ttf'
 import fontComfortaa from './public/fonts/Comfortaa/Comfortaa-Regular.ttf'
 import fontComfortaaBold from './public/fonts/Comfortaa/Comfortaa-Bold.ttf'
+import { Link } from 'react-router-dom'
 
 
 
@@ -40,13 +41,12 @@ injectGlobal`
    `;
 
 class App extends Component {
-    
-    
+
     render() {
         return (
             <section>
                 <Messages/>
-            
+                <Link to={'/playing'}>jogar</Link>
                 <Helmet
                     title="Quiz Star Wars"
                         style={[{

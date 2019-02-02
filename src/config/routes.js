@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Main from '../components/main'
+import Quiz from '../components/quiz'
 import App from '../components/app'
 
 
@@ -18,7 +19,7 @@ class Routes extends Component {
               
                 <section>
                     <Main>
-                        <Route path="/app" component={App}/> 
+                        <Route path="/playing" component={Quiz} /> 
                         <Route exact path="/" component={App}/>
                    </Main>    
                </section>
