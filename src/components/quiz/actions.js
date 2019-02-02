@@ -29,8 +29,6 @@ export function getPeopleApi(){
                 .catch(e => {
                     toastr.error('Atenção', 'Falha durante o processamento das informações')
                 })
-        
-      
     }
 }
 

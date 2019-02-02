@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPeopleApi } from './actions'
+import List from './list'
 import Helmet from 'react-helmet'
 
 
@@ -17,6 +18,8 @@ class Quiz extends Component {
             <section>
                  <div>
                      <h2>Quiz</h2>
+                     <List/>
+
                 </div>   
                 <Helmet
                     title="Jogando... Star Wars"
