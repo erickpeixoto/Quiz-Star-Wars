@@ -24,8 +24,9 @@ const styles = {
     },
 };
 
+
 function ImgMediaCard(props) {
-    const { classes, image, _key } = props;
+    const { classes, image, _key, setAnswers } = props;
     return (
         <Card className={classes.card}>
             <CardActionArea>
@@ -52,7 +53,7 @@ function ImgMediaCard(props) {
                   <Input
                        _key={_key} 
                   />
-                <Button size="small" color="primary" onClick={(input) => { console.info(input)}}>
+                <Button size="small" color="primary" onClick={(input) => setAnswers(_key) }>
                    Responder! 
                 </Button>
             </CardActions>

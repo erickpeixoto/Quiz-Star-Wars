@@ -16,15 +16,21 @@ export class ListPeople extends Component {
       itemsPerPage: 3
     }
     this.handlePageChange = this.handlePageChange.bind(this)
+    this.setAnswers = this.setAnswers.bind(this)
   }
 
+  setAnswers(value){
+    console.error('borisss: ', value)
+    this.props.setAnswer(value)
 
+  }
 
   handlePageChange(pageNumber) {
     this.setState({ activePage: pageNumber })
   }
 
   listItems(items, pageActual, limitItems) {
+    console.warn('Listou')
     let result = []
     let totalPage = Math.ceil(items.length / limitItems)
     let count = (pageActual * limitItems) - limitItems
@@ -43,17 +49,18 @@ export class ListPeople extends Component {
 
 
   renderRows() {
-console.warn('Acessou')
+
     const { people } = this.props.quiz
     const list = this.listItems(people, this.state.activePage, this.state.itemsPerPage)
 
     return list.map((person, i) => (
-
+      
 
       <span key={i}>
         <Card
-          image={person.perfil}
-          _key={i}
+          image={(person.perfil)}
+          setAnswers={this.setAnswers}
+          _key={person.person}
         />
       </span>
 

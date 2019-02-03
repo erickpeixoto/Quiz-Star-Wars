@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
 import {
-        FETCH_PEOPLE
+        FETCH_PEOPLE,
+        SET_ANSWER
 } from './constants'
+
 
 export function getPeopleApi(){
 
@@ -15,6 +17,7 @@ export function getPeopleApi(){
                         resp.data.results.map((_result, i) => {
                             getImageApi(_result.name, (image) => {
                                 _result.perfil = image
+                                _result.person = _result.url.split('/')[5]
                                  listPeople.push(_result)
                                  if ((resp.data.results.length) === (i+1)){
                                         dispatch({
@@ -42,3 +45,48 @@ export function getImageApi(value, callback) {
 }
 
 
+
+
+export function getAnswer(value, people, form, callback) {
+
+    
+      // GET ANSWER
+        Object.keys(form.values).map( (key, index) => {
+            
+            // COMPARING NUMBER AS PERSON
+            if(value === key.split('_')[1]){
+               callback(form.values[key])
+            }
+        })
+        //CHECK ANSWER
+        
+        //THAN, WE'LL CHECK IF THERE IS A VISUALIZATION
+
+   
+}
+
+export function setAnswer(value) {
+    return (dispatch, getState) => {
+        const { quiz: { people, answers }, form: { inputs } } = getState()
+        getAnswer(value, people, inputs, (valueForm)=>{
+            
+            //ANSWERS OBJECT UPDATED
+            answers.push({
+                person: value,
+                string: valueForm
+            })
+
+            //DISPATCHING WITH THUNK MIDDLEWARE
+            dispatch([{
+                type: SET_ANSWER,
+                payload: answers
+            },
+            {
+                type: FETCH_PEOPLE,
+                payload: people
+            }])
+            
+        })
+       
+    }
+}

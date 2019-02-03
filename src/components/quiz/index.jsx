@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPeopleApi } from './actions'
+import { 
+        getPeopleApi,
+        setAnswer
+       } from './actions'
 import List from './list'
 import Helmet from 'react-helmet'
 import Grid from '@material-ui/core/Grid'
@@ -37,7 +40,9 @@ class Quiz extends Component {
                   </Grid>   
 
                 <Grid container xs={12} className={'container-list'}>
-                     <List />
+                     <List
+                        setAnswer={this.props.setAnswer}
+                     />
                 </Grid>
 
 
@@ -66,5 +71,5 @@ class Quiz extends Component {
     }
 }
 const mapStateToProps = state => ({ settings: state.settings })
-const mapDispatchToProps = dispatch => bindActionCreators({ getPeopleApi }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ getPeopleApi, setAnswer }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Quiz)
