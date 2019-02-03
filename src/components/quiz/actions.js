@@ -159,13 +159,15 @@ export function setAnswer(value) {
 export function setVisualization(value) {
     return (dispatch, getState) => {
         const { quiz: { people, visualizations }, form: { inputs } } = getState()
+        const checkVisualizationExistence = personParam => visualizations.some(({ person }) => person === personParam)
       
-
-            //VISUZALIZATIONS OBJECT UPDATED
+        //VISUZALIZATIONS OBJECT UPDATED
+        if (!checkVisualizationExistence(value)){
             visualizations.push({
                 person: value,
                 visualized: true
             })
+        }
 
             //DISPATCHING WITH THUNK MIDDLEWARE
             dispatch([{
