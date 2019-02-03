@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { 
         getPeopleApi,
-        setAnswer
+        setAnswer,
+        setVisualization
        } from './actions'
 import List from './list'
 import Helmet from 'react-helmet'
@@ -42,6 +43,7 @@ class Quiz extends Component {
                 <Grid container xs={12} className={'container-list'}>
                      <List
                         setAnswer={this.props.setAnswer}
+                        setVisualization={this.props.setVisualization}
                      />
                 </Grid>
 
@@ -71,5 +73,7 @@ class Quiz extends Component {
     }
 }
 const mapStateToProps = state => ({ settings: state.settings })
-const mapDispatchToProps = dispatch => bindActionCreators({ getPeopleApi, setAnswer }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ getPeopleApi, 
+                                                            setAnswer, 
+                                                            setVisualization }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Quiz)

@@ -36,6 +36,10 @@ export class ListPeople extends Component {
     this.props.setAnswer(value)
 
   }
+  setVisualization(value) {
+    this.props.setVisualization(value)
+
+  }
 
   handlePageChange(pageNumber) {
     this.setState({ activePage: pageNumber })
@@ -71,6 +75,7 @@ export class ListPeople extends Component {
         <Card
           image={(person.perfil)}
           setAnswers={this.setAnswers}
+          setVisualization={this.props.setVisualization}
           _key={person.person}
            answered={checkAnswerExistence(person.person)}
            onRequestOpen={this.handleClickOpen}

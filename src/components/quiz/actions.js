@@ -3,7 +3,8 @@ import { toastr } from 'react-redux-toastr'
 import {
     FETCH_PEOPLE,
     FETCH_PERSON,
-    SET_ANSWER
+    SET_ANSWER,
+    SET_VISUALIZATION
 } from './constants'
 
 
@@ -150,6 +151,33 @@ export function setAnswer(value) {
             }])
 
         })
+
+    }
+}
+
+
+export function setVisualization(value) {
+    return (dispatch, getState) => {
+        const { quiz: { people, visualizations }, form: { inputs } } = getState()
+      
+
+            //VISUZALIZATIONS OBJECT UPDATED
+            visualizations.push({
+                person: value,
+                visualized: true
+            })
+
+            //DISPATCHING WITH THUNK MIDDLEWARE
+            dispatch([{
+                type: SET_VISUALIZATION,
+                payload: visualizations
+            },
+            {
+                type: FETCH_PEOPLE,
+                payload: people
+            }])
+
+        
 
     }
 }

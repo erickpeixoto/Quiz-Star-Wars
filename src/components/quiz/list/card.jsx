@@ -34,9 +34,10 @@ class ImgMediaCard extends Component {
     }
 
   openDetails(){
-      const { getPersonApi, onRequestOpen, _key } = this.props 
+      const { getPersonApi, onRequestOpen, _key, setVisualization } = this.props 
               onRequestOpen()
               getPersonApi(_key)
+              setVisualization(_key)
     }
 
   render() {

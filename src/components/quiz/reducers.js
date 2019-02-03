@@ -1,7 +1,8 @@
 import {
         FETCH_PEOPLE,
         FETCH_PERSON,
-        SET_ANSWER
+        SET_ANSWER,
+        SET_VISUALIZATION
 } from './constants'
 
 const INITIAL_STATE = {
@@ -10,6 +11,7 @@ const INITIAL_STATE = {
         answers: [],
         visualizations: []
 }
+
 export default (state = INITIAL_STATE, action) => {
 
         switch (action.type) {
@@ -19,6 +21,8 @@ export default (state = INITIAL_STATE, action) => {
                         return { ...state, person: action.payload }
                 case SET_ANSWER:
                         return { ...state, answers: action.payload }
+                case SET_VISUALIZATION:
+                        return { ...state, visualizations: action.payload }
                 
                 default:
                         return state
