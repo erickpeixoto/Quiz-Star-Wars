@@ -4,6 +4,9 @@
 .border{
     border: 1px solid red;
 }
+.border-gray{
+    border-bottom: 1px solid #eeeeee80;
+}
 .react-countdown-clock {
     float: right;
     right: 64px;
@@ -26,4 +29,7 @@
 }
 .MuiDialog-paperWidthSm-106 {
     width: 650px;
+}
+.bold{
+    font-weight: bold;
 }
