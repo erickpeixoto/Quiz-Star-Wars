@@ -84,7 +84,7 @@ export class ListPeople extends Component {
   }
   render() {
 
-    const { people } = this.props.quiz
+    const { people, person } = this.props.quiz
  
     return (
       <Grid container spacing={24}>
@@ -107,6 +107,7 @@ export class ListPeople extends Component {
           >
             <Details
                 onRequestClose={this.handleClose}
+                person={person}
             />
         </Dialog>
       </Grid>

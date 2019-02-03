@@ -8,7 +8,7 @@ import { Icon } from 'react-icons-kit'
 import { home } from 'react-icons-kit/icomoon/home'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-
+import CardMedia from '@material-ui/core/CardMedia'
 
 const DialogTitle = withStyles(theme => ({
     root: {
@@ -55,6 +55,9 @@ const DialogActions = withStyles(theme => ({
 class Details extends Component {
  
     render() {
+        
+        const { person } = this.props
+
         return (
             <div>
                 
@@ -64,13 +67,24 @@ class Details extends Component {
                             <DialogContent>
                                 <Typography gutterBottom>
                                      <Grid container spacing={24}>
-                                        <Grid item xs={12} className={'border'}>
-                                                        sdfsdfsd
+                                        <Grid item xs={5} className={'border'}>
+                                            <CardMedia
+                                                component="img"
+                                                alt="Contemplative Reptile"
+                                                className={'media-displaying'}
+                                                height="140"
+                                                image={person.details && person.details.perfil}
+                                            />
+                                        </Grid>
+                                         <Grid item xs={7} className={'border'}>
+                                            <Grid item xs={12} className={'border'}>
+                                            
+                                            </Grid>
                                         </Grid>
                                     </Grid>
                                    </Typography>
                                 <Typography gutterBottom>
-                                   #text...
+                        { person.movies && person.movies.toString() }
                     </Typography>
                                 <Typography gutterBottom>
                                      #text...

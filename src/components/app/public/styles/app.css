@@ -15,3 +15,15 @@
     text-align: center;
     margin-top: 20px;
 }
+.media-displaying{
+    object-fit: cover;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100% !important;
+    max-height: 206px !important;
+}
+.MuiDialog-paperWidthSm-106 {
+    width: 650px;
+}
