@@ -7,7 +7,7 @@ import {
 
 class Form extends Component {
     render() {
-        const { handleSubmit, _key } = this.props
+        const { handleSubmit, _key, disabled } = this.props
         return (
             <form onSubmit={handleSubmit}>
                 <Field
@@ -15,6 +15,7 @@ class Form extends Component {
                     component={TextField}
                     hintText="Qual é o nome?"
                     floatingLabelText="Resposta"
+                    disabled={disabled}
                 />
             </form>
         )

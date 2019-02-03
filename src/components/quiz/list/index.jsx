@@ -50,17 +50,17 @@ export class ListPeople extends Component {
 
   renderRows() {
 
-    const { people } = this.props.quiz
+    const { people, answers } = this.props.quiz
     const list = this.listItems(people, this.state.activePage, this.state.itemsPerPage)
-
+    const checkAnswerExistence = personParam => answers.some(({ person }) => person === personParam)
+    
     return list.map((person, i) => (
-      
-
       <span key={i}>
         <Card
           image={(person.perfil)}
           setAnswers={this.setAnswers}
           _key={person.person}
+           answered={checkAnswerExistence(person.person)}
         />
       </span>
 

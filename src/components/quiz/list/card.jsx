@@ -26,7 +26,7 @@ const styles = {
 
 
 function ImgMediaCard(props) {
-    const { classes, image, _key, setAnswers } = props;
+    const { classes, image, _key, setAnswers, answered } = props;
     return (
         <Card className={classes.card}>
             <CardActionArea>
@@ -40,7 +40,7 @@ function ImgMediaCard(props) {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        <Button size="small" color="primary">
+                        <Button size="small" color="primary" disabled={answered}>
                             Ver detalhes
                         </Button>
                   </Typography>
@@ -52,9 +52,11 @@ function ImgMediaCard(props) {
             <CardActions>
                   <Input
                        _key={_key} 
+                        disabled={answered}
                   />
-                <Button size="small" color="primary" onClick={(input) => setAnswers(_key) }>
-                   Responder! 
+                <Button size="small" color="primary" onClick={(input) => setAnswers(_key)} disabled={answered}>
+                    
+                    {!(answered) ? 'Responder' : 'Respondido' }
                 </Button>
             </CardActions>
         </Card>
