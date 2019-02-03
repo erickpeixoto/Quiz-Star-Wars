@@ -4,13 +4,15 @@ import {
     FETCH_PEOPLE,
     FETCH_PERSON,
     SET_ANSWER,
-    SET_VISUALIZATION
+    SET_VISUALIZATION,
+    SET_FINISH
 } from './constants'
 
 
 
 export function getPeopleApi() {
-
+    
+    localStorage.setItem('ranking', JSON.stringify([]))
     return (dispatch, getState) => {
         axios.get('https://swapi.co/api/people/')
             .then(resp => {
@@ -190,7 +192,6 @@ export function setVisualization(value) {
                 visualized: true
             })
         }
-
             //DISPATCHING WITH THUNK MIDDLEWARE
             dispatch([{
                 type: SET_VISUALIZATION,
@@ -200,8 +201,49 @@ export function setVisualization(value) {
                 type: FETCH_PEOPLE,
                 payload: people
             }])
-
-        
-
     }
 }
+
+
+export function setFinish(value) {
+    return (dispatch, getState) => {
+        const { quiz: { people } } = getState()
+        
+        //IS FINISHING 
+        dispatch([{
+            type: SET_FINISH,
+            payload: true
+        },
+        {
+            type: FETCH_PEOPLE,
+            payload: people
+        }])
+    }
+}
+
+export function sum(obj) {
+    let sum = 0
+    obj.forEach(element => {
+        sum += parseFloat(element.grade)
+    })
+    return sum
+}
+
+export function handleDataRanking(values) {
+   
+    return (dispatch, getState) => {
+        
+        const { quiz: { answers }, app } = getState()
+        
+        let ranking = JSON.parse(localStorage.getItem('ranking'))
+        ranking.push({
+            name: values.name,
+            email: values.email,
+            grade: sum(answers)
+        })
+        localStorage.setItem('ranking', JSON.stringify(ranking))
+        app.history.push('/')
+    }
+}
+
+

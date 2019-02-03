@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
+import { handleHistory } from './actions'
 
 import './public/styles/app.css'
 import './public/styles/toastr.css'
@@ -42,6 +42,12 @@ injectGlobal`
 
 class App extends Component {
 
+    componentWillMount() {
+        const { handleHistory } = this.props
+        handleHistory(this.props.history)
+
+      }
+
     render() {
         return (
             <section>
@@ -72,5 +78,5 @@ class App extends Component {
     }
 }
 const mapStateToProps = state => ({ settings: state.settings })
-const mapDispatchToProps = dispatch => bindActionCreators({ }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ handleHistory }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(App)

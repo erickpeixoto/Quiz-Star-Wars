@@ -5,21 +5,28 @@ import { bindActionCreators } from 'redux'
 import { 
         getPeopleApi,
         setAnswer,
-        setVisualization
+        setVisualization,
+        setFinish
        } from './actions'
 import List from './list'
 import Helmet from 'react-helmet'
 import Grid from '@material-ui/core/Grid'
 import ReactCountdownClock from 'react-countdown-clock'
 import Messages from '../app/messages/toastr'
+import Result from '../quiz/result'
 
 
 class Quiz extends Component {
     
+  
     componentDidMount() {
         this.props.getPeopleApi()
     }
+    handleFinished() {
+     this.props.setFinish()
+    }   
     render() {
+        const { finished } = this.props.quiz
         return (
             <Grid container spacing={24}>
                 <Grid container xs={12} className={'centerAlign border'}>
@@ -30,14 +37,13 @@ class Quiz extends Component {
                         <h2>Star Wars Quiz</h2>
                     </Grid>
                     <Grid item xs={4} className={'alignRight border'}>
-                        <ReactCountdownClock seconds={120}
+                        <ReactCountdownClock seconds={20}
                             color={'#3cccb9'}
                             alpha={0.9}
                             size={100}
-                            pausedText={'||'}
                             paused={false}
                             onClick={() => console.info('cliked')}
-                            onComplete={() => console.warn('concluído')} />
+                            onComplete={() => this.handleFinished()} />
                     </Grid>
                   </Grid>   
 
@@ -47,8 +53,10 @@ class Quiz extends Component {
                         setVisualization={this.props.setVisualization}
                      />
                 </Grid>
-
                 <Messages />
+                {(finished) && (
+                    <Result />
+                )}
                 <Helmet
                     title="Jogando... Star Wars"
                         style={[{
@@ -73,8 +81,9 @@ class Quiz extends Component {
         )
     }
 }
-const mapStateToProps = state => ({ settings: state.settings })
+const mapStateToProps = state => ({ quiz: state.quiz })
 const mapDispatchToProps = dispatch => bindActionCreators({ getPeopleApi, 
                                                             setAnswer, 
-                                                            setVisualization }, dispatch)
+                                                            setVisualization,
+                                                            setFinish }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Quiz)

@@ -50,3 +50,8 @@ button.answered{
     background: #2dd0c0;
     color: white !important;
 }
+
+.finalized big {
+    font-size: 41px;
+    color: green;
+}

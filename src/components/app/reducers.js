@@ -1,8 +1,9 @@
 import {
-        FETCH_PEOPLE
+        HANDLE_HISTORY
 } from './constants'
 
 const INITIAL_STATE = {
+        history: {},
         apis: {
                 cnpj: {
                         host: 'http://ws.hubdodesenvolvedor.com.br/v2/cnpj/?cnpj=',
@@ -22,6 +23,8 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 
         switch (action.type) {
+                case HANDLE_HISTORY:
+                        return { ...state, history: action.payload }
                 default:
                         return state
         }
