@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -25,42 +25,60 @@ const styles = {
 };
 
 
-function ImgMediaCard(props) {
-    const { classes, image, _key, setAnswers, answered } = props;
+
+class ImgMediaCard extends Component {
+
+    constructor(props) {
+        super(props)
+        this.openDetails = this.openDetails.bind(this)
+    }
+
+  openDetails(){
+      const { getPersonApi, onRequestOpen, _key } = this.props 
+              onRequestOpen()
+              getPersonApi(_key)
+    }
+
+  render() {
+      const { classes, image, _key, setAnswers, answered} = this.props
+
     return (
-        <Card className={classes.card}>
-            <CardActionArea>
-                <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                    className={classes.media}
-                    height="140"
-                    image={image}
-                    title="Contemplative Reptile"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        <Button size="small" color="primary" disabled={answered}>
-                            Ver detalhes
+      <div>
+            <Card className={classes.card}>
+                <CardActionArea>
+                    <CardMedia
+                        component="img"
+                        alt="Contemplative Reptile"
+                        className={classes.media}
+                        height="140"
+                        image={image}
+                        title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            <Button size="small" color="primary" disabled={answered} onClick={this.openDetails}>
+                                Ver detalhes
                         </Button>
-                  </Typography>
-                    <Typography component="p">
-                        Lembre-se, quando você verifica os detalhes, os acertos passam a valer <big>5 pontos</big>
-                   </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                  <Input
-                       _key={_key} 
+                        </Typography>
+                        <Typography component="p">
+                            Lembre-se, quando você verifica os detalhes, os acertos passam a valer <big>5 pontos</big>
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Input
+                        _key={_key}
                         disabled={answered}
-                  />
-                <Button size="small" color="primary" onClick={(input) => setAnswers(_key)} disabled={answered}>
-                    
-                    {!(answered) ? 'Responder' : 'Respondido' }
-                </Button>
-            </CardActions>
-        </Card>
-    );
+                    />
+                    <Button size="small" color="primary" onClick={(input) => setAnswers(_key)} disabled={answered}>
+
+                        {!(answered) ? 'Responder' : 'Respondido'}
+                    </Button>
+                </CardActions>
+            </Card>
+      </div>
+    )
+  }
 }
 
 ImgMediaCard.propTypes = {

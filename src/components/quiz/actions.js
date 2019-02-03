@@ -2,6 +2,7 @@ import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
 import {
         FETCH_PEOPLE,
+        FETCH_PERSON,
         SET_ANSWER
 } from './constants'
 
@@ -11,8 +12,6 @@ export function getPeopleApi(){
     return (dispatch, getState) => {
                axios.get('https://swapi.co/api/people/')
                 .then(resp => {
-                  
-
                     let listPeople = []
                         resp.data.results.map((_result, i) => {
                             getImageApi(_result.name, (image) => {
@@ -27,11 +26,46 @@ export function getPeopleApi(){
                                     }
                             })
                         })
-
-                 })
+                })
                 .catch(e => {
                     toastr.error('Atenção', 'Falha durante o processamento das informações')
                 })
+    }
+}
+
+export function getPersonApi(value) {
+
+    return (dispatch, getState) => {
+
+        let person = {
+            details: {},
+            specie: {},
+            planet: {},
+            movies: [],
+            Vehicles: []
+        }
+
+        axios.all([
+            axios.get(`https://swapi.co/api/people/${value}/`),
+            axios.get(`https://swapi.co/api/species/${value}/`)
+        ]).then(axios.spread((peopleRes, speciesRes) => {
+                // do something with both responses
+                console.info(peopleRes, speciesRes)
+          }))
+
+
+        // axios.get(`https://swapi.co/api/people/${value}/`)
+        //     .then(resp => {
+         
+        //         dispatch({
+        //             type: FETCH_PERSON,
+        //             payload: resp.data
+        //         })
+               
+        //     })
+        //     .catch(e => {
+        //         toastr.error('Atenção', 'Falha durante o processamento das informações')
+        //     })
     }
 }
 

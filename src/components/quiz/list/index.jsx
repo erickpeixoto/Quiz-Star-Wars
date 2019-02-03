@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { getPersonApi } from '../actions'
 import Grid from '@material-ui/core/Grid'
 import Card from './card'
 import Pagination from "react-js-pagination"
-
+import Dialog from '@material-ui/core/Dialog'
+import Details from '../details'
 
 export class ListPeople extends Component {
 
@@ -13,10 +15,20 @@ export class ListPeople extends Component {
     super(props)
     this.state = {
       activePage: 1,
-      itemsPerPage: 3
+      itemsPerPage: 3,
+      modal: true
     }
     this.handlePageChange = this.handlePageChange.bind(this)
     this.setAnswers = this.setAnswers.bind(this)
+  }
+
+  handleClickOpen = () => {
+    this.setState({ modal: true })
+  }
+
+  handleClose = () => {
+    console.warn('Closse')
+    this.setState({ modal: false })
   }
 
   setAnswers(value){
@@ -61,6 +73,8 @@ export class ListPeople extends Component {
           setAnswers={this.setAnswers}
           _key={person.person}
            answered={checkAnswerExistence(person.person)}
+           onRequestOpen={this.handleClickOpen}
+           getPersonApi={this.props.getPersonApi}
         />
       </span>
 
@@ -71,7 +85,7 @@ export class ListPeople extends Component {
   render() {
 
     const { people } = this.props.quiz
-
+ 
     return (
       <Grid container spacing={24}>
           <Grid item xs={12} className={'centerAlign'}>
@@ -86,13 +100,22 @@ export class ListPeople extends Component {
                   onChange={this.handlePageChange}
                 />
           </Grid>
+          <Dialog
+            modal={false}
+            open={this.state.modal}
+            className={'box-modal'}
+          >
+            <Details
+                onRequestClose={this.handleClose}
+            />
+        </Dialog>
       </Grid>
     )
   }
 }
 
 const mapStateToProps = state => ({ quiz: state.quiz})
-const mapDispatchToProps = dispatch => bindActionCreators({ }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ getPersonApi }, dispatch)
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListPeople)
