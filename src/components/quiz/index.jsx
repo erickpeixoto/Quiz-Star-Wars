@@ -31,7 +31,7 @@ class Quiz extends Component {
                     </Grid>
                     <Grid item xs={4} className={'alignRight border'}>
                         <ReactCountdownClock seconds={120}
-                            color={'gray'}
+                            color={'#3cccb9'}
                             alpha={0.9}
                             size={100}
                             pausedText={'||'}
