@@ -16,7 +16,7 @@ export class ListPeople extends Component {
     this.state = {
       activePage: 1,
       itemsPerPage: 3,
-      modal: true
+      modal: false
     }
     this.handlePageChange = this.handlePageChange.bind(this)
     this.setAnswers = this.setAnswers.bind(this)
@@ -27,18 +27,14 @@ export class ListPeople extends Component {
   }
 
   handleClose = () => {
-    console.warn('Closse')
     this.setState({ modal: false })
   }
 
   setAnswers(value){
-    console.error('borisss: ', value)
     this.props.setAnswer(value)
-
   }
   setVisualization(value) {
     this.props.setVisualization(value)
-
   }
 
   handlePageChange(pageNumber) {
@@ -46,7 +42,6 @@ export class ListPeople extends Component {
   }
 
   listItems(items, pageActual, limitItems) {
-    console.warn('Listou')
     let result = []
     let totalPage = Math.ceil(items.length / limitItems)
     let count = (pageActual * limitItems) - limitItems
@@ -66,9 +61,10 @@ export class ListPeople extends Component {
 
   renderRows() {
 
-    const { people, answers } = this.props.quiz
+    const { people, answers, visualizations } = this.props.quiz
     const list = this.listItems(people, this.state.activePage, this.state.itemsPerPage)
     const checkAnswerExistence = personParam => answers.some(({ person }) => person === personParam)
+    const checkVisualizationExistence = personParam => visualizations.some(({ person }) => person === personParam)
     
     return list.map((person, i) => (
       <span key={i}>
@@ -78,6 +74,7 @@ export class ListPeople extends Component {
           setVisualization={this.props.setVisualization}
           _key={person.person}
            answered={checkAnswerExistence(person.person)}
+           visualized={checkVisualizationExistence(person.person)}
            onRequestOpen={this.handleClickOpen}
            getPersonApi={this.props.getPersonApi}
         />

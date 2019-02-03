@@ -8,6 +8,7 @@ import {
 } from './constants'
 
 
+
 export function getPeopleApi() {
 
     return (dispatch, getState) => {
@@ -113,43 +114,64 @@ export function getImageApi(value, callback) {
 
 export function getAnswer(value, people, form, callback) {
 
+    if (form.values){
+            // GET ANSWER
+            Object.keys(form.values).map((key, index) => {
+        
+                // COMPARING NUMBER AS PERSON
+                if (value === key.split('_')[1]) {
+                     people.map((person, i) => {
+                        if(value === person.person){
+                            callback({
+                                person: person,    
+                                value:form.values[key]
+                            })
+                        }
+                    })
+                }
+            })
 
-    // GET ANSWER
-    Object.keys(form.values).map((key, index) => {
-
-        // COMPARING NUMBER AS PERSON
-        if (value === key.split('_')[1]) {
-            callback(form.values[key])
-        }
-    })
-    //CHECK ANSWER
-
-    //THAN, WE'LL CHECK IF THERE IS A VISUALIZATION
-
+    }else{
+        callback(false)
+    }
 
 }
 
 export function setAnswer(value) {
     return (dispatch, getState) => {
-        const { quiz: { people, answers }, form: { inputs } } = getState()
-        getAnswer(value, people, inputs, (valueForm) => {
+        const { quiz: { people, answers, visualizations }, form: { inputs } } = getState()
+   
+        getAnswer(value, people, inputs, (respForm) => {
 
-            //ANSWERS OBJECT UPDATED
-            answers.push({
-                person: value,
-                string: valueForm
-            })
+            if (respForm){
+               
+                //GRADE LOGIC
+                const checkVisualizationExistence = personParam => visualizations.some(({ person }) => person === personParam)
+                const wasVisualized = (checkVisualizationExistence(respForm.person.person)) ? 0.5 : 1
+                const gradeBase = 10
+                const gradeTest = respForm.person.name.toLowerCase().includes(respForm.value.toLowerCase())
 
-            //DISPATCHING WITH THUNK MIDDLEWARE
-            dispatch([{
-                type: SET_ANSWER,
-                payload: answers
-            },
-            {
-                type: FETCH_PEOPLE,
-                payload: people
-            }])
+                //ANSWERS OBJECT UPDATED
+                answers.push({
+                    person: value,
+                    string: respForm.value,
+                    grade: (gradeTest) ? (gradeBase * wasVisualized) : 0
+                })
 
+                //DISPATCHING WITH THUNK MIDDLEWARE
+                dispatch([{
+                    type: SET_ANSWER,
+                    payload: answers
+                },
+                {
+                    type: FETCH_PEOPLE,
+                    payload: people
+                }])
+            }else{
+                console.error('alklaskdjalksdjalk')
+                toastr.error('Atenção', 'Digite o nome corretamente')
+            }
+      
         })
 
     }

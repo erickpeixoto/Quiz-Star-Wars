@@ -6,6 +6,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import { Icon } from 'react-icons-kit'
+import { ic_remove_red_eye } from 'react-icons-kit/md/ic_remove_red_eye'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Input from './input'
@@ -41,7 +43,7 @@ class ImgMediaCard extends Component {
     }
 
   render() {
-      const { classes, image, _key, setAnswers, answered} = this.props
+      const { classes, image, _key, setAnswers, answered, visualized } = this.props
 
     return (
       <div>
@@ -53,8 +55,11 @@ class ImgMediaCard extends Component {
                         className={classes.media}
                         height="140"
                         image={image}
-                        title="Contemplative Reptile"
+                        title={(visualized) && 'Detalhes Visualizados'} 
                     />
+                    {(visualized) && (
+                        <Icon className={'icon-visualized'} icon={ic_remove_red_eye} />
+                    )}
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                             <Button size="small" color="primary" disabled={answered} onClick={this.openDetails}>
@@ -70,11 +75,9 @@ class ImgMediaCard extends Component {
                     <Input
                         _key={_key}
                         disabled={answered}
+                        setAnswers={setAnswers}
+                        answered={answered}
                     />
-                    <Button size="small" color="primary" onClick={(input) => setAnswers(_key)} disabled={answered}>
-
-                        {!(answered) ? 'Responder' : 'Respondido'}
-                    </Button>
                 </CardActions>
             </Card>
       </div>

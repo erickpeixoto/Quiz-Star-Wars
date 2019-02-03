@@ -11,6 +11,7 @@ import List from './list'
 import Helmet from 'react-helmet'
 import Grid from '@material-ui/core/Grid'
 import ReactCountdownClock from 'react-countdown-clock'
+import Messages from '../app/messages/toastr'
 
 
 class Quiz extends Component {
@@ -47,7 +48,7 @@ class Quiz extends Component {
                      />
                 </Grid>
 
-
+                <Messages />
                 <Helmet
                     title="Jogando... Star Wars"
                         style={[{

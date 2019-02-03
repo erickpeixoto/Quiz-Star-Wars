@@ -33,3 +33,20 @@
 .bold{
     font-weight: bold;
 }
+.icon-visualized{
+    position: absolute;
+    top: 9px;
+    left: 10px;   
+}
+.icon-visualized svg{
+    color: white;
+    width: 35px !important;
+    height: 35px;
+}
+input{
+    box-shadow: none !important;
+}
+button.answered{
+    background: #2dd0c0;
+    color: white !important;
+}
