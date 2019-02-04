@@ -1,13 +1,13 @@
 {
   "main.css": "/static/css/main.553aea97.chunk.css",
-  "main.js": "/static/js/main.c03108ba.chunk.js",
-  "static/js/1.9a4c6b8d.chunk.js": "/static/js/1.9a4c6b8d.chunk.js",
+  "main.js": "/static/js/main.25d91510.chunk.js",
+  "static/js/1.3fa610a4.chunk.js": "/static/js/1.3fa610a4.chunk.js",
   "runtime~main.js": "/static/js/runtime~main.229c360f.js",
   "static/media/darth_vader.png": "/static/media/darth_vader.e80e97c3.png",
   "static/media/PoiretOne-Regular.ttf": "/static/media/PoiretOne-Regular.3b585e0e.ttf",
   "static/media/Comfortaa-Regular.ttf": "/static/media/Comfortaa-Regular.d350ce24.ttf",
   "static/media/Comfortaa-Bold.ttf": "/static/media/Comfortaa-Bold.7695aeab.ttf",
   "index.html": "/index.html",
-  "precache-manifest.27bf73b6c6a63757ec66cd413b591e56.js": "/precache-manifest.27bf73b6c6a63757ec66cd413b591e56.js",
+  "precache-manifest.92fad3419f763f73cc0bdac7ef5153fe.js": "/precache-manifest.92fad3419f763f73cc0bdac7ef5153fe.js",
   "service-worker.js": "/service-worker.js"
 }

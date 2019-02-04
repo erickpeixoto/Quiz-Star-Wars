@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "c03108bad43fe759b034",
+    "revision": "25d91510411d64c04581",
     "url": "/static/css/main.553aea97.chunk.css"
   },
   {
-    "revision": "c03108bad43fe759b034",
-    "url": "/static/js/main.c03108ba.chunk.js"
+    "revision": "25d91510411d64c04581",
+    "url": "/static/js/main.25d91510.chunk.js"
   },
   {
-    "revision": "9a4c6b8db9ab5bd2b561",
-    "url": "/static/js/1.9a4c6b8d.chunk.js"
+    "revision": "3fa610a4205b1dc742c0",
+    "url": "/static/js/1.3fa610a4.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/static/media/Comfortaa-Bold.7695aeab.ttf"
   },
   {
-    "revision": "1aa41de4f23c7163848f87fd675ecc3b",
+    "revision": "0118a273f897d4eabfcc0e00bec9a1ce",
     "url": "/index.html"
   }
 ];
