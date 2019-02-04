@@ -45,7 +45,7 @@ class Quiz extends Component {
                     </Grid>
                     <Grid item xs={4} className={'centerAlign'}>
                         <Link to={'/'}>
-                             <big>Quiz::Star Wars</big>
+                            <img className="logo-app" src={require('../app/public/images/darth_vader.png')} size="50" alt="Quiz Star Wars" />
                         </Link>
                     </Grid>
                     <Grid item xs={4} className={'alignRight'}>

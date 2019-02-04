@@ -263,4 +263,15 @@ export function handleDataRanking(values) {
     }
 }
 
+export function resetValuesState() {
+
+    return (dispatch, getState) => {
+        dispatch([{
+            type: FETCH_PERSON,
+            payload: {}
+        }
+      ])
+    }
+}
+
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPersonApi } from '../actions'
+import { getPersonApi, resetValuesState } from '../actions'
 import Grid from '@material-ui/core/Grid'
 import Card from './card'
 import Pagination from "react-js-pagination"
@@ -15,7 +15,7 @@ export class ListPeople extends Component {
     super(props)
     this.state = {
       activePage: 1,
-      itemsPerPage: 3,
+      itemsPerPage: 4,
       modal: false
     }
     this.handlePageChange = this.handlePageChange.bind(this)
@@ -28,6 +28,7 @@ export class ListPeople extends Component {
 
   handleClose = () => {
     this.setState({ modal: false })
+    this.props.resetValuesState()
   }
 
   setAnswers(value){
@@ -118,7 +119,7 @@ export class ListPeople extends Component {
 }
 
 const mapStateToProps = state => ({ quiz: state.quiz})
-const mapDispatchToProps = dispatch => bindActionCreators({ getPersonApi }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ getPersonApi, resetValuesState }, dispatch)
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListPeople)

@@ -9,6 +9,14 @@ import { home } from 'react-icons-kit/icomoon/home'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import CardMedia from '@material-ui/core/CardMedia'
+import { ClipLoader } from 'react-spinners'
+import { css } from '@emotion/core';
+
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;
 
 const DialogTitle = withStyles(theme => ({
     root: {
@@ -57,88 +65,104 @@ class Details extends Component {
     render() {
 
         const { person } = this.props
-
         return (
             <div>
+            
+            {(!person.details) && (
+                <span>
+                        <ClipLoader
+                            css={override}
+                            sizeUnit={"px"}
+                            size={150}
+                            color={'#e96875'}
+                            loading={true}
+                        />
+                </span>
+            )}
 
-                <DialogTitle id="customized-dialog-title">
-                    Detalhes:
-                    </DialogTitle>
-                <DialogContent>
-                    <Typography gutterBottom>
-                        <Grid container spacing={24}>
-                            <Grid item xs={5} className={'border-gray'}>
-                                <CardMedia
-                                    component="img"
-                                    alt="Contemplative Reptile"
-                                    className={'media-displaying'}
-                                    height="140"
-                                    image={person.details && person.details.perfil}
-                                />
-                            </Grid>
-                            <Grid item xs={7} className={'border-gray'}>
-                                <Grid container xs={12}>
+                
+                {(person.details && person.planet.name) && (
+                    <span>
+                        <DialogTitle id="customized-dialog-title">
+                            Detalhes:
+                        </DialogTitle>
+                        <DialogContent>
+                            <Typography gutterBottom>
+                                <Grid container spacing={24}>
+                                    <Grid item xs={5} className={'border-gray'}>
+                                        <CardMedia
+                                            component="img"
+                                            alt="Contemplative Reptile"
+                                            className={'media-displaying'}
+                                            height="140"
+                                            image={person.details && person.details.perfil}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={7} className={'border-gray'}>
+                                        <Grid container xs={12}>
+                                            <Grid item xs={3} className={'bold'}>
+                                                Espécie:
+                                                    </Grid>
+                                            <Grid item xs={9}>
+                                                <Typography gutterBottom>
+                                                    {person.specie && person.specie.name}
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item xs={3} className={'bold'}>
+                                                Altura:
+                                                    </Grid>
+                                            <Grid item xs={9}>
+                                                <Typography gutterBottom>
+                                                    {person.details && person.details.height}
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item xs={3} className={'bold'}>
+                                                Cabelo:
+                                                    </Grid>
+                                            <Grid item xs={9}>
+                                                <Typography gutterBottom>
+                                                    {person.details && person.details.hair_color}
+                                                </Typography>
+                                            </Grid>
+
+                                            <Grid item xs={3} className={'bold'}>
+                                                Planeta:
+                                                    </Grid>
+                                            <Grid item xs={9}>
+                                                <Typography gutterBottom>
+                                                    {person.details && person.planet.name}
+                                                </Typography>
+                                            </Grid>
+
+                                        </Grid>
+                                    </Grid>
                                     <Grid item xs={3} className={'bold'}>
-                                        Espécie:
-                                                </Grid>
+                                        Filmes:
+                                            </Grid>
                                     <Grid item xs={9}>
                                         <Typography gutterBottom>
-                                            {person.specie && person.specie.name}
+                                            {person.movies && person.movies.toString()}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={3} className={'bold'}>
-                                        Altura:
-                                                </Grid>
+                                        Veículos:
+                                            </Grid>
                                     <Grid item xs={9}>
                                         <Typography gutterBottom>
-                                            {person.details && person.details.height}
+                                            {person.vehicles && person.vehicles.toString()}
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={3} className={'bold'}>
-                                        Cabelo:
-                                                </Grid>
-                                    <Grid item xs={9}>
-                                        <Typography gutterBottom>
-                                            {person.details && person.details.hair_color}
-                                        </Typography>
-                                    </Grid>
-
-                                    <Grid item xs={3} className={'bold'}>
-                                        Planeta:
-                                                </Grid>
-                                    <Grid item xs={9}>
-                                        <Typography gutterBottom>
-                                            {person.details && person.planet.name}
-                                        </Typography>
-                                                </Grid>
-
                                 </Grid>
-                            </Grid>
-                            <Grid item xs={3} className={'bold'}>
-                                Filmes:
-                                        </Grid>
-                            <Grid item xs={9}>
-                                <Typography gutterBottom>
-                                    {person.movies && person.movies.toString()}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={3} className={'bold'}>
-                                Veículos:
-                                        </Grid>
-                            <Grid item xs={9}>
-                                <Typography gutterBottom>
-                                    {person.vehicles && person.vehicles.toString()}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Typography>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={this.props.onRequestClose} color="primary">
-                        Fechar
-                      </Button>
-                </DialogActions>
-
+                            </Typography>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.props.onRequestClose} color="primary">
+                                Fechar
+                        </Button>
+                        </DialogActions>
+                    </span>
+                )}
+             
             </div>
         )
     }

@@ -14,7 +14,9 @@ import mainFont from './public/fonts/Poiret_One/PoiretOne-Regular.ttf'
 import fontComfortaa from './public/fonts/Comfortaa/Comfortaa-Regular.ttf'
 import fontComfortaaBold from './public/fonts/Comfortaa/Comfortaa-Bold.ttf'
 import { Link } from 'react-router-dom'
-
+import Grid from '@material-ui/core/Grid'
+import { Icon } from 'react-icons-kit'
+import { home } from 'react-icons-kit/icomoon/home'
 
 
 
@@ -43,6 +45,7 @@ injectGlobal`
 class App extends Component {
 
     componentWillMount() {
+        console.warn('Montou')
         const { handleHistory } = this.props
         handleHistory(this.props.history)
 
@@ -51,8 +54,42 @@ class App extends Component {
     render() {
         return (
             <section>
+                <Grid container spacing={24}>
+                    <Grid item xs={12} className={'centerAlign'}>
+                        <Grid item xs={12}>
+                            <span className="logo">Quiz Star Wars</span> 
+                        </Grid>
+                        <Grid item xs={12}>
+                            <img src={require('./public/images/darth_vader.png')} alt="Quiz Star Wars"/>
+                        </Grid>
+                        <Grid item xs={12} className="box-instructions">
+                            <p> Bem-Vindo ao <strong>Quiz</strong> sensação do momento. </p>
+                            <p> Tente responder o nome do máximo de personagens, testando sua memória e a melhorando ao mesmo tempo :) </p>
+                            <p><span className="show-me">Regras: </span></p>
+                             <ul class="mdc-list">
+                                <li class="mdc-list-item" tabindex="0">
+                                    <span class="mdc-list-item__text"> * Você terá<span className="show-me">2 (dois)</span>minutos para responder o nome dos personagens</span>
+                                </li>
+                                <li class="mdc-list-item">
+                                    <span class="mdc-list-item__text">* Para cada acerto, você receberá 10 pontos</span>
+                                </li>
+                                <li class="mdc-list-item">
+                                    <span class="mdc-list-item__text">Caso você opte por uma ajudinha clicando em: <span className="show-me">"Detalhes"</span>, sua resposta correta passa a valer 5 pontos </span>
+                                </li>
+                                <li class="mdc-list-item">
+                                    <span class="mdc-list-item__text">  E no final, você poderá salvar seu desempenho entrando pro nosso  <Link to={'/ranking'} className="link-ranking">Ranking</Link> </span>
+                                </li>
+                                <li class="mdc-list-item">
+                                    <span class="mdc-list-item__text">   PRONTO pra se divertir?  Enjoy! </span>
+                                </li>
+                            </ul>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Link to={'/playing'} className="play">jogar</Link>
+                        </Grid>
+                    </Grid>
+                </Grid>
                 <Messages/>
-                <Link to={'/playing'}>jogar</Link>
                 <Helmet
                     title="Quiz Star Wars"
                         style={[{

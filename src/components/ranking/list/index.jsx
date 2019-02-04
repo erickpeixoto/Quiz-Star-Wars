@@ -3,11 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPersonApi } from '../actions'
 import Grid from '@material-ui/core/Grid'
-import Card from './card'
 import Pagination from "react-js-pagination"
-import Dialog from '@material-ui/core/Dialog'
-import Details from '../details'
-
 export class ListPeople extends Component {
 
 
