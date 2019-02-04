@@ -16,7 +16,8 @@ const styles = {
     card: {
         maxWidth: 345,
         float: 'left',
-        marginRight: 12
+        marginRight: 12,
+        marginBottom: 20
 
     },
     media: {

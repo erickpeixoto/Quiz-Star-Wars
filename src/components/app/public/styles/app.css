@@ -98,7 +98,7 @@ button:focus{
 }
 
   /* DESKTOP FUll */ 
-@media (max-width: 1920px) {
+@media (min-width: 1920px) {
         .container-all{
             min-height: 900px;
         }
@@ -126,8 +126,31 @@ button:focus{
 
         }
     }
+@media (min-width: 600px){
+    .box-instructions{
+        position: relative;
+        top: -44px;
+    }
+      .logo {
+            font-size: 30px;
+            position: relative;
+            font-weight: bold;
+        }
+        img{
+            width: 37%;
+        }
+        .logo-app {
+           width: 238px;
+            position: relative;
+            top: 6px;
+        }
+        .container-list {
+            padding-left: 12%;
+        }
+        
+    }
 
-@media (max-width: 992px){
+@media (max-width: 600px){
     .box-instructions{
         position: relative;
         top: -100px;
@@ -144,6 +167,9 @@ button:focus{
            width: 238px;
             position: relative;
             top: 6px;
+        }
+        .container-list {
+            padding-left: 12%;
         }
         
     }

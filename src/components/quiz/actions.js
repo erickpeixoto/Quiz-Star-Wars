@@ -14,7 +14,7 @@ export function getPeopleApi() {
 
     let ranking = (localStorage.getItem('ranking')) ? JSON.parse(localStorage.getItem('ranking')) : []
         localStorage.setItem('ranking', JSON.stringify((ranking.length) ? ranking : []))
-    return (dispatch, getState) => {
+    return (dispatch) => {
         axios.get('https://swapi.co/api/people/')
             .then(resp => {
                 let listPeople = []
@@ -40,7 +40,7 @@ export function getPeopleApi() {
 
 export function getPersonApi(value) {
 
-    return (dispatch, getState) => {
+    return (dispatch) => {
 
         let person = {
             details: {},
@@ -183,7 +183,7 @@ export function setAnswer(value) {
 
 export function setVisualization(value) {
     return (dispatch, getState) => {
-        const { quiz: { people, visualizations }, form: { inputs } } = getState()
+        const { quiz: { people, visualizations }} = getState()
         const checkVisualizationExistence = personParam => visualizations.some(({ person }) => person === personParam)
       
         //VISUZALIZATIONS OBJECT UPDATED
@@ -237,7 +237,6 @@ export function handleDataRanking(values) {
         const { quiz: { answers }, app } = getState()
         
         let ranking = JSON.parse(localStorage.getItem('ranking'))
-        console.warn(ranking)
         ranking.push({
             name: values.name,
             email: values.email,
@@ -265,7 +264,7 @@ export function handleDataRanking(values) {
 
 export function resetValuesState(display) {
 
-    return (dispatch, getState) => {
+    return (dispatch) => {
         if(display){
                 dispatch([{
                     type: FETCH_PERSON,

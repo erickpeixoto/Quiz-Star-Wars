@@ -13,7 +13,6 @@ import App from '../components/app'
 class Routes extends Component {
 
     render() {
-        const { settings } = this.props
         
         return (
             <Router>

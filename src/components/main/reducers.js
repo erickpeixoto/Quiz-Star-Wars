@@ -13,14 +13,8 @@ const appReducer = combineReducers({
 })
 
 
-const initialState = appReducer({}, {})
 
 const rootReducer = (state, action) => {
-
-    // here, we can to implement action for Sign Out
-    // if (action.type === '__MODEL_SIGN_OUT__') {
-    //     state = initialState
-    // }
  return appReducer(state, action)
 }
 
