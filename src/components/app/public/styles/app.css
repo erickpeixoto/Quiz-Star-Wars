@@ -55,3 +55,24 @@ button.answered{
     font-size: 41px;
     color: green;
 }
+
+.box-ranking{
+    padding-top: 15px;
+    text-align: left;
+}
+.box-ranking svg{
+    width: 36px;
+    height: 36px;
+    color: #ee6e73;
+}
+button:focus{
+    background-color: unset !important;
+}
+.item-ranking{
+    margin-top: 4px;
+    background: white;
+    padding: 13px;
+}
+.container-all{
+    min-height: 600px;
+}

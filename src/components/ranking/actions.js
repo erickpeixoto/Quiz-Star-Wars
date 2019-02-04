@@ -13,7 +13,7 @@ import {
 export function getPeopleApi() {
 
     let ranking = (localStorage.getItem('ranking')) ? JSON.parse(localStorage.getItem('ranking')) : []
-        localStorage.setItem('ranking', JSON.stringify((ranking.length) ? ranking : []))
+        localStorage.setItem('ranking', JSON.stringify((ranking) ? ranking : []))
     return (dispatch, getState) => {
         axios.get('https://swapi.co/api/people/')
             .then(resp => {

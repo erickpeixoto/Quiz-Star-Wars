@@ -44,16 +44,12 @@ class Quiz extends Component {
 
                     </Grid>
                     <Grid item xs={4} className={'centerAlign'}>
-                        <h2>Star Wars Quiz</h2>
+                        <Link to={'/'}>
+                             <big>Quiz::Star Wars</big>
+                        </Link>
                     </Grid>
                     <Grid item xs={4} className={'alignRight'}>
-                        <ReactCountdownClock seconds={8}
-                            color={'#3cccb9'}
-                            alpha={0.9}
-                            size={100}
-                            paused={false}
-                            onClick={() => console.info('cliked')}
-                            onComplete={() => this.handleFinished()} />
+                      
                     </Grid>
                   </Grid>   
 
@@ -64,11 +60,9 @@ class Quiz extends Component {
                      />
                 </Grid>
                 <Messages />
-                {(finished) && (
-                    <Result />
-                )}
+             
                 <Helmet
-                    title="Jogando... Star Wars"
+                    title="Ranking Star Wars"
                         style={[{
                             "cssText": `
                             body {
