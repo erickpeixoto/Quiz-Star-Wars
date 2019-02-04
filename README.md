@@ -18,7 +18,13 @@ Projeto Quiz Star Wars
  ### `redux-form-material-ui: ^4.2.0
  ### `styled-components: ^2.2.2`
 
-### `npm start`
+Desenvolvedor.<br>
+Erick Eduardo @erickpeixoto
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Demo online.<br>
+Acesse:  [http://23.239.17.215:8383/](http://23.239.17.215:8383/) to view it in the browser.
+
+
+Vídeo Demonstrativo.<br>
+Acesse:  [https://www.useloom.com/share/2bd59c3e1d574b39a212be0854661720](https://www.useloom.com/share/2bd59c3e1d574b39a212be0854661720 to view it in the browser.
+

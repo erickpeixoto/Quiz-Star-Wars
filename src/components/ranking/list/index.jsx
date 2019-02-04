@@ -23,40 +23,54 @@ export class ListPeople extends Component {
   }
 
   listItems(items, pageActual, limitItems) {
-    let result = []
-    let totalPage = Math.ceil(items.length / limitItems)
-    let count = (pageActual * limitItems) - limitItems
-    let delimiter = count + limitItems
+    if(items && items.length){
 
-    if (pageActual <= totalPage) {
-      for (let i = count; i < delimiter; i++) {
-        if (items[i] != null) {
-          result.push(items[i])
+        let result = []
+        let totalPage = Math.ceil(items.length / limitItems)
+        let count = (pageActual * limitItems) - limitItems
+        let delimiter = count + limitItems
+    
+        if (pageActual <= totalPage) {
+          for (let i = count; i < delimiter; i++) {
+            if (items[i] != null) {
+              result.push(items[i])
+            }
+            count++
+          }
         }
-        count++
-      }
+        return result
     }
-    return result
   }
 
 
   renderRows() {
     
     const list = this.listItems(JSON.parse(localStorage.getItem('ranking')), this.state.activePage, this.state.itemsPerPage)
-       return list.map((person, i) => (
-         <Grid container xs={12} className={'item-ranking'}>
-            <Grid item xs={4}>
-                {person.name}
+    if (list && list.length) {
+
+          return list.map((person, i) => (
+            <Grid container xs={12} className={'item-ranking'}>
+              <Grid item xs={4}>
+                  {person.name}
+              </Grid>
+              <Grid item xs={4}>
+                  {person.email}
+              </Grid>
+              <Grid item xs={4}>
+                  {person.grade}
+              </Grid>
             </Grid>
-            <Grid item xs={4}>
-                {person.email}
-            </Grid>
-            <Grid item xs={4}>
-                {person.grade}
-            </Grid>
+    
+      ))
+    }else{
+      return (
+        <Grid container xs={12} className={'item-ranking'}>
+          <Grid item xs={12}>
+            Sem registros
+          </Grid>
          </Grid>
-  
-    ))
+      )
+    }
 
   }
   render() {
