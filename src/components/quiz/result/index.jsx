@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPersonApi, handleDataRanking } from '../actions'
+import { getPersonApi, handleDataRanking, resetValuesState } from '../actions'
 
 
 import Dialog from '@material-ui/core/Dialog'
@@ -23,6 +23,10 @@ export class Result extends Component {
 
     handleClose = () => {
         this.setState({ modal: false })
+        this.props.resetValuesState()
+        this.props.app.history.push('/')
+          
+        
     }
 
    
@@ -46,8 +50,8 @@ export class Result extends Component {
     }
 }
 
-const mapStateToProps = state => ({ quiz: state.quiz })
-const mapDispatchToProps = dispatch => bindActionCreators({ getPersonApi, handleDataRanking }, dispatch)
+const mapStateToProps = state => ({ quiz: state.quiz, app: state.app })
+const mapDispatchToProps = dispatch => bindActionCreators({ getPersonApi, handleDataRanking, resetValuesState }, dispatch)
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Result)

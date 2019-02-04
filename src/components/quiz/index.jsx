@@ -26,7 +26,7 @@ class Quiz extends Component {
         this.props.getPeopleApi()
     }
     handleFinished() {
-     this.props.setFinish()
+     this.props.setFinish(true)
     }   
     render() {
         const { finished } = this.props.quiz
@@ -50,7 +50,7 @@ class Quiz extends Component {
 
                     </Grid>
                     <Grid item xs={4} className={'alignRight'}>
-                        <ReactCountdownClock seconds={8}
+                        <ReactCountdownClock seconds={120}
                             color={'#3cccb9'}
                             alpha={0.9}
                             size={100}

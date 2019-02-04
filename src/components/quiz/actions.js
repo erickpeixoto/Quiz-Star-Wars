@@ -213,7 +213,7 @@ export function setFinish(value) {
         //IS FINISHING 
         dispatch([{
             type: SET_FINISH,
-            payload: true
+            payload: value
         },
         {
             type: FETCH_PEOPLE,
@@ -263,14 +263,32 @@ export function handleDataRanking(values) {
     }
 }
 
-export function resetValuesState() {
+export function resetValuesState(display) {
 
     return (dispatch, getState) => {
-        dispatch([{
-            type: FETCH_PERSON,
-            payload: {}
+        if(display){
+                dispatch([{
+                    type: FETCH_PERSON,
+                    payload: {}
+                }
+              ])
+        }else{
+
+                dispatch([{
+                    type: FETCH_PERSON,
+                    payload: {}
+                },
+                {
+                    type: SET_ANSWER,
+                    payload: []
+                },
+                {
+                    type: SET_VISUALIZATION,
+                    payload: []
+                },
+                    getPeopleApi()
+            ])
         }
-      ])
     }
 }
 

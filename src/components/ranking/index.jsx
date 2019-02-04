@@ -26,7 +26,7 @@ class Quiz extends Component {
         this.props.getPeopleApi()
     }
     handleFinished() {
-     this.props.setFinish()
+     this.props.setFinish(true)
     }   
     render() {
         const { finished } = this.props.quiz

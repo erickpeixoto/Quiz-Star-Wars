@@ -28,7 +28,7 @@ export class ListPeople extends Component {
 
   handleClose = () => {
     this.setState({ modal: false })
-    this.props.resetValuesState()
+    this.props.resetValuesState(true)
   }
 
   setAnswers(value){

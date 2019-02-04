@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { handleHistory } from './actions'
+import { setFinish } from '../quiz/actions'
 
 import './public/styles/app.css'
 import './public/styles/toastr.css'
@@ -16,8 +17,8 @@ import fontComfortaaBold from './public/fonts/Comfortaa/Comfortaa-Bold.ttf'
 import { Link } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import { Icon } from 'react-icons-kit'
-import { home } from 'react-icons-kit/icomoon/home'
-
+import { ic_stars } from 'react-icons-kit/md/ic_stars'
+import Button from '@material-ui/core/Button'
 
 
 /* eslint no-unused-expressions: 0 */
@@ -45,9 +46,10 @@ injectGlobal`
 class App extends Component {
 
     componentWillMount() {
-        console.warn('Montou')
-        const { handleHistory } = this.props
+        
+        const { handleHistory, setFinish } = this.props
         handleHistory(this.props.history)
+        setFinish(false)
 
       }
 
@@ -56,14 +58,25 @@ class App extends Component {
             <section>
                 <Grid container spacing={24}>
                     <Grid item xs={12} className={'centerAlign'}>
+                        <Grid container xs={12} className={'centerAlign'}>
+                            <Grid item xs={4} className={'alignLeft box-ranking'}>
+                                <Link to={'/ranking'}>
+                                    <Button aria-label="Close">
+                                        <Icon icon={ic_stars} />
+                                        <span>Ranking</span>
+                                    </Button>
+                                </Link>
+
+
+                            </Grid>
+                        </Grid>   
+                        
+                     
                         <Grid item xs={12}>
-                            <span className="logo">Quiz Star Wars</span> 
-                        </Grid>
-                        <Grid item xs={12}>
-                            <img src={require('./public/images/darth_vader.png')} alt="Quiz Star Wars"/>
+                            <img src={require('./public/images/darth_vader.png')} alt="Quiz Star Wars" className="img-logo"/>
                         </Grid>
                         <Grid item xs={12} className="box-instructions">
-                            <p> Bem-Vindo ao <strong>Quiz</strong> sensação do momento. </p>
+                            <p> Bem-Vindo ao <strong>Quiz</strong> Star Wars </p>
                             <p> Tente responder o nome do máximo de personagens, testando sua memória e a melhorando ao mesmo tempo :) </p>
                             <p><span className="show-me">Regras: </span></p>
                              <ul class="mdc-list">
@@ -115,5 +128,5 @@ class App extends Component {
     }
 }
 const mapStateToProps = state => ({ settings: state.settings })
-const mapDispatchToProps = dispatch => bindActionCreators({ handleHistory }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ handleHistory, setFinish }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(App)
